@@ -1,88 +1,71 @@
----
-title: "Automatic Vs. Manual Transmission MPG"
-author: "Emanuel Baisire"
-output:
-  word_document: default
-  pdf_document:
-    number_sections: yes
-    toc: yes
-  html_document:
-    number_sections: yes
-    toc: yes
----
-### Executive Summary
-The study purpose is to compare automatic and manual transmission engines'fuel consumption measured as Miles Per Gallon (MPG). The analysis is based from the 1974 Motor Trend US magazine "mtcars" dataset. A regressiona model is applied to determine better fuel efficiency transmission between manual and automatic transmission engines.
+<html>
+<head>
+<title>Executive Summary</title>
+</head>
 
-The hypothesis tested whether manual transmission engines are better than automatic in fuel consumption as measured by Miles Per Gallon (Mpg).A linear regression model results shows that manual transmission engines have a 7.2449 MPG advantage over autotamatic transmission.
+<body>
 
-### Cleaning data
+<p>The purporse of this study is compare fuel consumption of an automatic and manual transmission car in relation to Miles Per Gallon (MPG). The data source for this excercise is primarily from the 1974 Motor Trend US magazine "mtcars" dataset. A regressiona model is applied to determine a better fuel efficiency transmission between a manual and automatic car.
+The hypothesis to be tested is whether a manual transmission engine has a better Miles Per Gallon (Mpg) consumption than automatic. The test results indicated that a manual transmission engine has an MPG advantage of 7.2449 using a simple linear regression
+To ensure that confouding variables do not skew the result, a Mulitvariate Regression was also conducted for a better view of transmission differences in relation to MPGS.
+Overall, that study concludes that a manual transmission engine fare better than an automatic transmission relation to fuel consumption.
+</p>
 
-#### Load and Test Data
 
-The initial step was to load and categorize data from the Motor Trend magazine dataset. 
-```{r}
-data(mtcars)
+<h2>Load and Test Data<h2/>
+<p>The initial step is to load and categorize data from the Motor Trend magazine dataset.</p>
+
+<!--data(mtcars)
  str(mtcars)
-```
+-->
 
-### Process Data
-To proceed,it was necessary to convert some numeric variables to factors for a better data analysis.
+<h2>Process Data:<h2/>
+<p>To proceed, we will have to convert some variables from nummeric to factors for a better analysis.</p>
 
-```{r}
-mtcars$cyl <- factor(mtcars$cyl)
+
+<!--mtcars$cyl <- factor(mtcars$cyl)
 mtcars$vs <- factor(mtcars$vs)
 mtcars$gear <- factor(mtcars$gear)
 mtcars$carb <- factor(mtcars$carb)
 mtcars$am <- factor(mtcars$am,labels=c('Automatic','Manual'))
-```
+-->
+<h2>Exploratory analysis<h2/>
 
-###: Exploratory analysis
-This is helpful in understanding the data and the main variables to be considered for the model creation.
+<!--summary(mtcars)-->
 
-```{r}
-summary(mtcars)
-```
+<h2>Creating a Regression Model:<h2/>
 
-### Creating a Regression Model:  
-
-A simple Linear Regression and a Multivariate Regression were used and compared against each other to determine the best results. ANOVA was also applied for the 2 models to determine if there was any strong variances.
-
-```{r}
-fit <- lm(mpg~am, data = mtcars)
+<!--fit <- lm(mpg~am, data = mtcars)
 summary(fit)
+-->
 
-best_fit <- lm(mpg~am + wt + hp, data = mtcars)
+<!--best_fit <- lm(mpg~am + wt + hp, data = mtcars)
 anova(fit, best_fit)
-```
-### Model Testing:
+-->
 
-```{r}
-t.test(mpg ~ am, data = mtcars)
-```
-### Boxplot
-```{r}
-boxplot(mpg~am, data = mtcars,col ="blue",
+<h2>Model Testing:<h2/>
+<!--t.test(mpg ~ am, data = mtcars)
+-->
+
+<h2>Boxplot:<h2/>
+<!--boxplot(mpg~am, data = mtcars,col ="blue",
 xlab = "Transmission",
 ylab = "Miles per Gallon",
 main = "MPG by Transmission Type")
-```
+-->
+<h2>Results:<h2/>
+<p>The boxplot indicates that a manual transmission achieve extra miles per gallon compared to automatic transmission.
+The t-test output of a p-value: 0.001374 that is less than 0.05. strongly validates the result.<p/>
 
+<h2>Appendix: 1:<h2/>
 
-###Results: 
-The boxplot indicates that a manual transmission engine achieves extra miles per gallon compared to an automatic transmission.
+<p>Cars-Scatterplot:<p/>
+<!-- pairs(mpg ~ ., data = mtcars) -->
 
-The t-test output of a p-value: 0.001374 that is less than 0.05 strongly validates our results.
+<h2>Appendix: 2:<h2/>
 
-### Appendix: 1 
-Cars-Scatterplot:
-```{r}
-pairs(mpg ~ ., data = mtcars)
-```
-
-### Appendix: 2
-MPG Boxplots
-```{r}
-par(mfrow=c(1,1))
+<p>MPG Boxplots<p/>
+<!-- par(mfrow=c(1,1))
 with(mtcars,{
      boxplot(mpg~am, data = mtcars,col ="blue",
 xlab = "Transmission",
@@ -93,4 +76,7 @@ main = "MPG by Transmission Type")
              ylab = "miles per gallon (MPG)")
      abline(fit, col=4)
      })
-```
+  -->
+
+</body>
+</html>
